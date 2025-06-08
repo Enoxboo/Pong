@@ -7,9 +7,10 @@
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Ball" parent="." node_paths=PackedStringArray("score") instance=ExtResource("2_31fxm")]
+[node name="Ball" parent="." node_paths=PackedStringArray("score", "victory_screen") instance=ExtResource("2_31fxm")]
 position = Vector2(320, 240)
 score = NodePath("../RichTextLabel")
+victory_screen = NodePath("../Control")
 
 [node name="Bar1" parent="." instance=ExtResource("1_j4qrl")]
 position = Vector2(20, 240)
@@ -27,3 +28,38 @@ text = "SCORE"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 106.5
+offset_top = 80.0
+offset_right = 532.5
+offset_bottom = 400.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 426.0
+offset_bottom = 320.0
+color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_right = 426.0
+offset_bottom = 320.0
+theme_override_fonts/normal_font = ExtResource("4_4kvl3")
+theme_override_font_sizes/normal_font_size = 50
+text = "Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 159.5
+offset_top = 246.0
+offset_right = 263.5
+offset_bottom = 277.0
+theme_override_fonts/font = ExtResource("4_4kvl3")
+text = "Replay"
+
+[connection signal="button_down" from="Control/Button" to="Ball" method="_on_button_button_down"]

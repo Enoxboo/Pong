@@ -5,7 +5,8 @@ var angle := 90
 @export var score : RichTextLabel
 var score1 := 0
 var score2 := 0
-var win := false
+var win := true
+@export var victory_screen : Control
 
 func _ready() -> void:
 	update_score(0, 0)
@@ -43,6 +44,7 @@ func update_score(point1, point2):
 func win_game():
 	reset_position()
 	win = true
+	victory_screen.visible = true
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var raquette_y = area.global_position.y
@@ -51,3 +53,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	angle = ball_y - raquette_y
 
 	speed *= -1.05
+
+
+func _on_button_button_down() -> void:
+	victory_screen.visible = false
+	win = false
+	score1 = 0
+	score2 = 0
+	update_score(0, 0)
