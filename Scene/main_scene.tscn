@@ -7,10 +7,12 @@
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Ball" parent="." node_paths=PackedStringArray("score", "victory_screen") instance=ExtResource("2_31fxm")]
+[node name="Ball" parent="." node_paths=PackedStringArray("score", "winner_text", "victory_screen", "main_screen") instance=ExtResource("2_31fxm")]
 position = Vector2(320, 240)
 score = NodePath("../RichTextLabel")
+winner_text = NodePath("../Control/RichTextLabel")
 victory_screen = NodePath("../Control")
+main_screen = NodePath("../Control2")
 
 [node name="Bar1" parent="." instance=ExtResource("1_j4qrl")]
 position = Vector2(20, 240)
@@ -30,6 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 106.5
@@ -48,18 +51,100 @@ layout_mode = 0
 offset_right = 426.0
 offset_bottom = 320.0
 theme_override_fonts/normal_font = ExtResource("4_4kvl3")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 42
 text = "Victory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
+offset_left = 87.5
+offset_top = 239.0
+offset_right = 191.5
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("4_4kvl3")
+text = "Replay"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 232.5
+offset_top = 239.0
+offset_right = 336.5
+offset_bottom = 270.0
+theme_override_fonts/font = ExtResource("4_4kvl3")
+text = "Exit"
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 106.5
+offset_top = 80.0
+offset_right = 532.5
+offset_bottom = 400.0
+
+[node name="ColorRect" type="ColorRect" parent="Control2"]
+layout_mode = 0
+offset_right = 426.0
+offset_bottom = 320.0
+color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2"]
+layout_mode = 0
+offset_right = 426.0
+offset_bottom = 320.0
+theme_override_fonts/normal_font = ExtResource("4_4kvl3")
+theme_override_font_sizes/normal_font_size = 42
+text = "Pong
+
+Difficulty
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control2"]
+layout_mode = 0
 offset_left = 159.5
 offset_top = 246.0
 offset_right = 263.5
 offset_bottom = 277.0
 theme_override_fonts/font = ExtResource("4_4kvl3")
-text = "Replay"
+text = "Medium"
+
+[node name="Button2" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 284.5
+offset_top = 246.0
+offset_right = 388.5
+offset_bottom = 277.0
+theme_override_fonts/font = ExtResource("4_4kvl3")
+text = "Hard"
+
+[node name="Button3" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 30.5
+offset_top = 246.0
+offset_right = 134.5
+offset_bottom = 277.0
+theme_override_fonts/font = ExtResource("4_4kvl3")
+text = "Easy"
+
+[node name="Button4" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = 138.5
+offset_top = 283.0
+offset_right = 290.5
+offset_bottom = 314.0
+theme_override_fonts/font = ExtResource("4_4kvl3")
+text = "2 Players"
 
 [connection signal="button_down" from="Control/Button" to="Ball" method="_on_button_button_down"]
+[connection signal="button_down" from="Control/Button2" to="Ball" method="_on_button_2_button_down"]
+[connection signal="button_down" from="Control2/Button" to="Ball" method="_on_button_button_down"]
+[connection signal="button_up" from="Control2/Button" to="Bar2" method="_medium"]
+[connection signal="button_down" from="Control2/Button2" to="Ball" method="_on_button_button_down"]
+[connection signal="button_up" from="Control2/Button2" to="Bar2" method="_hard"]
+[connection signal="button_down" from="Control2/Button3" to="Ball" method="_on_button_button_down"]
+[connection signal="button_up" from="Control2/Button3" to="Bar2" method="_easy"]
+[connection signal="button_down" from="Control2/Button4" to="Ball" method="_on_button_button_down"]
+[connection signal="button_up" from="Control2/Button4" to="Bar2" method="_on_button_4_button_up"]
