@@ -7,22 +7,23 @@
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Ball" parent="." instance=ExtResource("2_31fxm")]
+[node name="Ball" parent="." node_paths=PackedStringArray("score") instance=ExtResource("2_31fxm")]
 position = Vector2(320, 240)
+score = NodePath("../RichTextLabel")
 
 [node name="Bar1" parent="." instance=ExtResource("1_j4qrl")]
 position = Vector2(20, 240)
 
 [node name="Bar2" parent="." node_paths=PackedStringArray("balle") instance=ExtResource("3_06yma")]
-position = Vector2(622, 240)
+position = Vector2(620, 240)
 balle = NodePath("../Ball")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_right = 640.0
-offset_bottom = 60.0
+offset_bottom = 80.0
 theme_override_fonts/normal_font = ExtResource("4_4kvl3")
 theme_override_font_sizes/normal_font_size = 40
-text = "Test"
+text = "SCORE"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
