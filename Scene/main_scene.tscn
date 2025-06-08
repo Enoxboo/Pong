@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cef0mld3c3a5d"]
+
+[ext_resource type="PackedScene" uid="uid://chrm7e1jptu44" path="res://Bars/bar.tscn" id="1_j4qrl"]
+[ext_resource type="PackedScene" uid="uid://35y3pi4ec3vd" path="res://Ball/ball.tscn" id="2_31fxm"]
+[ext_resource type="PackedScene" uid="uid://csto2fnqj1g3b" path="res://Enemy/enemy.tscn" id="3_06yma"]
+[ext_resource type="FontFile" uid="uid://dd18du075fcbm" path="res://PressStart2P-vaV7.ttf" id="4_4kvl3"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Ball" parent="." instance=ExtResource("2_31fxm")]
+position = Vector2(320, 240)
+
+[node name="Bar1" parent="." instance=ExtResource("1_j4qrl")]
+position = Vector2(20, 240)
+
+[node name="Bar2" parent="." node_paths=PackedStringArray("balle") instance=ExtResource("3_06yma")]
+position = Vector2(622, 240)
+balle = NodePath("../Ball")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 640.0
+offset_bottom = 60.0
+theme_override_fonts/normal_font = ExtResource("4_4kvl3")
+theme_override_font_sizes/normal_font_size = 40
+text = "Test"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
